@@ -6,11 +6,18 @@ import CharacterDetails from './components/CharacterDetails';
 
 function App() {
 
+  console.log("..... excuting App .....")
+
   const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
+
+    console.log("..... sending query to API .....")
+
     axios.get("https://ih-crud-api.herokuapp.com/characters")
       .then(response => {
+        
+        console.log("..... We now have the response .....")
         setCharacters(response.data);
       })
       .catch(e => console.log("error getting characters from API", e))
@@ -41,16 +48,16 @@ function App() {
 
       <Routes>
         <Route path='/' element={renderListOfCharacters()} />
-        {/* <Route path="/characters/3" element={<CharacterDetails id="3" />} />
-        {/* <Route path="/characters/1" element={<CharacterDetails id="1" />} />
+
+        {/* 
+        <Route path="/characters/1" element={<CharacterDetails id="1" />} />
         <Route path="/characters/2" element={<CharacterDetails id="2" />} />
-        <Route path="/characters/3" element={<CharacterDetails id="3" />} /> */} */}
-
-        <Route path="/characters/:characterId/" element={<CharacterDetails />} />
+        <Route path="/characters/3" element={<CharacterDetails id="3" />} /> 
+        <Route path="/characters/4" element={<CharacterDetails id="4" />} /> 
+        */}
+        
+        <Route path="/characters/:characterId/" element={<CharacterDetails charactersArr={characters} />} />
       </Routes>
-
-
-
 
     </div>
   );
